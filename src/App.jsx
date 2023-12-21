@@ -4,10 +4,20 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './components/Card'
 
+function handleClick() {
+  alert("ciao");
+}
+function handleChange(e) {
+  console.log(e.target.value);
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  console.log(e);
+}
+
 function App() {
   const [count, setCount] = useState(0)
   const places = [
-
     {
         id: 0,
         title: "Desert",
@@ -54,6 +64,20 @@ function App() {
           </Card>
         ))}
 
+      </div>
+
+      <div className='card flex justify-center gap-4'>
+          <button onClick={() => setCount((count) => count + 1)}>
+            count is {count}
+          </button>
+
+          <button onClick={handleClick}>alert</button>
+
+          <input type="text" onChange={handleChange} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'/>
+
+          <form onSubmit={handleSubmit}>
+              <button type='submit'>invia</button>
+          </form>
       </div>
 
     </>
