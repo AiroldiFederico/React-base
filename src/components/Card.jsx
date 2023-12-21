@@ -6,11 +6,11 @@
 
 
 
-function Card() {
+function Card(props) {
 
-    const title = "Desert";
-    const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis maiores quod modi nulla numquam doloremque libero nam sapiente suscipit sit.";
-    const imgURL = "https://images.unsplash.com/photo-1682686581427-7c80ab60e3f3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+     const title = props.title;
+     const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis maiores quod modi nulla numquam doloremque libero nam sapiente suscipit sit.";
+     const imgURL = props.imgURL;
 
     return (
 
