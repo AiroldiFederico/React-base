@@ -6,11 +6,9 @@
 
 
 
-function Card(props) {
+function Card({title, imgURL}) {
 
-     const title = props.title;
      const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis maiores quod modi nulla numquam doloremque libero nam sapiente suscipit sit.";
-     const imgURL = props.imgURL;
 
     return (
 
