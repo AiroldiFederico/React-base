@@ -68,8 +68,9 @@ function App() {
 
   return (
     <>
-
+      <div className='flex justify-center w-100'>
       <CardForm propAddPlace={addPlace} ></CardForm>
+      </div>
 
       <div className='grid grid-cols-4 gap-10 '>
         
