@@ -16,7 +16,17 @@ function handleSubmit(e) {
 }
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [items, setItems] = useState([1,2,3]);
+
+  const addItem = () => {
+    const newItem = 4;
+    setItems([...items, newItem])
+    console.log(items)
+  };
+
+
+
   const places = [
     {
         id: 0,
@@ -28,7 +38,7 @@ function App() {
     {
         id: 1,
         title: "Arctic",
-        description: "A polar region characterized by cold temperatures, ice, and snow.",
+        description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
         imgURL: "https://images.unsplash.com/photo-1509326066092-14b2e882fe86?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         isVisited: false
     },
@@ -67,13 +77,18 @@ function App() {
       </div>
 
       <div className='card flex justify-center gap-4'>
+
           <button onClick={() => setCount((count) => count + 1)}>
             count is {count}
           </button>
 
+          <button onClick={addItem}>
+            additem
+          </button>
+
           <button onClick={handleClick}>alert</button>
 
-          <input type="text" onChange={handleChange} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'/>
+          <input type="text" onChange={handleChange} className=' border text-sm rounded-lg block p-2.5 '/>
 
           <form onSubmit={handleSubmit}>
               <button type='submit'>invia</button>
