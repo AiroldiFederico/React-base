@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './components/Card'
+import CardForm from './components/CardForm'
 
 function handleClick() {
   alert("ciao");
@@ -27,7 +28,9 @@ function App() {
 
 
 
-  const places = [
+
+
+  const [places, setPlaces] = useState([
     {
         id: 0,
         title: "Desert",
@@ -56,11 +59,18 @@ function App() {
         imgURL: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2488&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         isVisited: false
     }
-  ];
+  ]);
+
+  const addPlace = (place) => {
+    setPlaces([...places, place])
+  };
 
 
   return (
     <>
+
+      <CardForm propAddPlace={addPlace} ></CardForm>
+
       <div className='grid grid-cols-4 gap-10 '>
         
         {places.map((place) => (
