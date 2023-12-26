@@ -7,6 +7,7 @@ function Example() {
         document.title = `conteggio:  ${count}`;
     }, [count]);
 
+
     return (
         <div>
             <button onClick={() => setCount(count + 1)}>

@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './components/Card'
 import CardForm from './components/CardForm'
 import Example from './components/UseEffectExample'
+import ExampleApi from './components/UseApiExample'
 
 function handleClick() {
   alert("ciao");
@@ -20,12 +21,22 @@ function handleSubmit(e) {
 function App() {
   const [count, setCount] = useState(0);
   const [items, setItems] = useState([1,2,3]);
+  const [data, setData] = useState([]);
 
   const addItem = () => {
     const newItem = 4;
     setItems([...items, newItem])
     console.log(items)
   };
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+        .then((response) => response.json())
+        .then((data) => {
+            setData(data); 
+            console.log(data);
+        });
+  }, []);
 
 
 
@@ -88,6 +99,18 @@ function App() {
 
       </div>
 
+      <div className='grid grid-cols-4 gap-10 mt-4'>
+        
+        {data.map((item) => (
+          <div key={item.id} className='bg-slate-400 rounded-lg p-3'>
+            <p className='text-red-900 mb-1 font-bold'>User: {item.userId}</p>
+            <p className='text-xl mb-3'>{item.title}</p>
+            <p className='text-gray-800'>{item.body}</p>
+          </div>
+        ))}
+
+      </div>
+
       <div className='card flex justify-center gap-4'>
 
           <button onClick={() => setCount((count) => count + 1)}>
@@ -107,6 +130,9 @@ function App() {
           </form>
 
           <Example></Example>
+
+          <ExampleApi></ExampleApi>
+
       </div>
 
     </>
