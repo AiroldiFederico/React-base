@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useReducer } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -18,10 +18,23 @@ function handleSubmit(e) {
   console.log(e);
 }
 
+function formReducer(state, action){
+  switch (action.type) {
+    case "CHANGE_FIELD":
+     return {...state, [action.field]: action.value};
+    case "RESET_FORM":
+     return { name:"", email: ""};
+    default:
+      return state;
+
+  }
+}
+
 function App() {
   const [count, setCount] = useState(0);
   const [items, setItems] = useState([1,2,3]);
   const [data, setData] = useState([]);
+  const [formState, dispatchFormState] = useReducer(formReducer, {name: '', email: ''})
 
   const addItem = () => {
     const newItem = 4;
@@ -38,7 +51,19 @@ function App() {
         });
   }, []);
 
+  const handleFieldChange = (field, value) => {
+    dispatchFormState({type: "CHANGE_FIELD", field, value})
+  };
 
+  const resetForm = (e) => {
+    e.preventDefault();
+    dispatchFormState({type: "RESET_FORM", field, value})
+  };
+
+  const sendForm = (e) => {
+    e.preventDefault();
+    console.log(formState);
+  };
 
 
 
@@ -134,6 +159,35 @@ function App() {
           <ExampleApi></ExampleApi>
 
       </div>
+
+      <form>
+
+        <div>
+          <label htmlFor="name">Nome:</label>
+          <input 
+            type="text"
+            id='name'
+            name='name'
+            value={formState.name}
+            onChange={(e) => handleFieldChange("name", e.target.value)}
+          ></input>
+        </div>
+
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input 
+            type="email"
+            id='email'
+            name='email'
+            value={formState.email}
+            onChange={(e) => handleFieldChange("email", e.target.value)}
+          ></input>
+        </div>
+
+        <button onClick={resetForm}>Reset</button>
+        <button onClick={sendForm}>Invia</button>
+
+      </form>
 
     </>
   )
